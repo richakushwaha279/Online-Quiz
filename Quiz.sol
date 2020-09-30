@@ -16,6 +16,7 @@ contract Quiz
     uint tFee;
     uint registrationDeadline;
     uint answerSubmissionTime;
+    unit dummy;  // dummy variable added
     
     string prevAns;
     event Print(bytes32);
@@ -173,6 +174,11 @@ contract Quiz
         require(!(participantNumber[msg.sender] == 0), " You are not registered for this quiz! ");
         _;
     }
+    modifier registered_dummy()  // dummy function added
+    {
+        require(!(participantNumber[msg.sender] == 0), " You are not registered for this quiz! ");
+        _;
+    } 
     
     function initialize_game_by_manager(uint _n, string q1, string q2, string q3, string q4, string a1, string a2, string a3, string a4, uint fee, uint registrationTimeLimit) public
     onlyQuizMaster()
